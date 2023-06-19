@@ -169,19 +169,19 @@ def main():
 
    # Display recommended foods and ask for user's ratings
     if 'recommended_foods' in st.session_state:
-        st.write('We recommend the following foods based on your ratings:')
+        st.write('根据您的评分，我们推荐以下食物：')
         for food_id, info in st.session_state.recommended_foods.items():
             flavor = get_flavor(food_id)  # Get the flavor for the food_id
             st.write(f"{info['food']} - Flavor: {flavor}")
-            info['rating'] = st.slider('Rate this food', 0, 5, step=1, value=info['rating'], key=f'rec_{food_id}')
+            info['rating'] = st.slider('给这个食物打分', 0, 5, step=1, value=info['rating'], key=f'rec_{food_id}')
             
         #设置按钮“Submit Recommended Ratings”，点击按钮生成本次推荐的分数percentage_of_total，
         #计算公式为：percentage_of_total = (total_score / 25) * 100。。
-        if st.button('Submit Recommended Ratings'):
+        if st.button('提交推荐评分：'):
             # Calculate the percentage of total possible score
             total_score = sum([info['rating'] for info in st.session_state.recommended_foods.values()])
             percentage_of_total = (total_score / 25) * 100
-            st.write(f'你在可能总分中所占的百分比: {percentage_of_total}%')
+            st.write(f'你在总分中所占的百分比: {percentage_of_total}%')
 
 if pred is None:
     st.write("请上传一张图片以获取预测")
