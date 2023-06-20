@@ -120,7 +120,7 @@ def recommend_foods(algo, data_df, foods_df, new_user_id, new_ratings):
     predictions = algo.test(testset_new_user)
 
     # Get the top 5 foods with highest predicted ratings
-    top_5_iids = [pred.iid for pred in sorted(predictions, key=lambda x: x.est, reverse=True)[:5]]
+    top_5_iids = [pred.iid for pred in sorted(predictions, key=lambda x: x.est, reverse=True)[:6]]
     top_5_foods = foods_df.loc[foods_df.index.isin(top_5_iids), 'food']
 
     return top_5_foods
